@@ -68,7 +68,7 @@ class _Body extends StatelessWidget {
       },
       child: Container(
         height: double.infinity,
-        decoration: buildBoxDecoration('images/bg_image.png'),
+        decoration: buildBoxDecoration('assets/images/bg_image.png'),
         child: Center(
           child: SingleChildScrollView(
             child: ConstrainedBox(

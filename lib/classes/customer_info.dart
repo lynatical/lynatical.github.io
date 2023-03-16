@@ -5,6 +5,7 @@ class CustomerInfo {
   final String city;
   final String state;
   final String zipcode;
+  final String locationGroup;
   String coverageType;
   final LatLng locationPosition;
 
@@ -14,6 +15,7 @@ class CustomerInfo {
     required this.state,
     required this.zipcode,
     required this.coverageType,
+    required this.locationGroup,
     required this.locationPosition,
   });
 }

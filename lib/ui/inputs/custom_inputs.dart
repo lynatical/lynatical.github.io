@@ -12,6 +12,8 @@ class CustomInputs {
     Color hintColor = const Color(0xFF8aa7d2),
   }) {
     return InputDecoration(
+        isDense: true,
+        contentPadding: const EdgeInsets.all(0),
         border: OutlineInputBorder(
             gapPadding: 0,
             borderRadius: getBorderRadius(autoSuggest),

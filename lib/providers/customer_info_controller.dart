@@ -121,6 +121,7 @@ class CustomerInfoProvider with ChangeNotifier {
       'apiKey': apiKey,
       'action': 'formLead',
       "networkType": leadInfo.coverageType,
+      "locationGroup": leadInfo.locationGroup,
       'customer': lead,
       "servicesInterest": {
         "internet": internetCheckbox,

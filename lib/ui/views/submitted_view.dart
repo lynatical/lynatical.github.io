@@ -20,7 +20,7 @@ class SubmittedView extends StatelessWidget {
         const SizedBox(
             height: 250,
             width: 250,
-            child: RiveAnimation.asset('images/success.riv')),
+            child: RiveAnimation.asset('assets/images/success.riv')),
         Text("Your data has been sucessfully submitted!", style: textPrimary)
       ],
     );

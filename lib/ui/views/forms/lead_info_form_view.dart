@@ -53,6 +53,7 @@ class _LeadFormViewState extends State<LeadFormView> {
         onChanged: customerInfo.setTvCheckbox,
         text: 'TV',
       ),
+      const SizedBox(width: 10),
       CustomCheckbox(
         value: customerInfo.voiceCheckbox,
         onChanged: customerInfo.setVoiceCheckbox,
@@ -103,7 +104,7 @@ class _LeadFormViewState extends State<LeadFormView> {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 15),
+                            const SizedBox(width: 10),
                             Expanded(
                               child: TextFormField(
                                 /// VARIABLE STORAGE
@@ -135,7 +136,7 @@ class _LeadFormViewState extends State<LeadFormView> {
                           ],
                         )
                       : SizedBox(
-                          height: 150,
+                          height: 130,
                           child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +172,7 @@ class _LeadFormViewState extends State<LeadFormView> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 15, height: 15),
+                                SizedBox(width: 15, height: mobile ? null : 15),
                                 Expanded(
                                   child: TextFormField(
                                     /// VARIABLE STORAGE
@@ -202,10 +203,10 @@ class _LeadFormViewState extends State<LeadFormView> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 15, height: 15),
+                                SizedBox(width: 15, height: mobile ? null : 15),
                               ]),
                         ),
-                  SizedBox(height: mobile ? null : 25),
+                  SizedBox(height: mobile ? null : 15),
                   TextFormField(
                     /// VARIABLE STORAGE
                     controller: customerInfo.parsedPhone,
@@ -232,7 +233,7 @@ class _LeadFormViewState extends State<LeadFormView> {
                       color: Color(0xFF2E5899),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   TextFormField(
                     /// VARIABLE STORAGE
                     controller: customerInfo.parsedEmail,
@@ -259,7 +260,7 @@ class _LeadFormViewState extends State<LeadFormView> {
                       color: Color(0xFF2E5899),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
@@ -272,7 +273,7 @@ class _LeadFormViewState extends State<LeadFormView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: serviceCheckboxes,
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Wrap(
                     alignment: WrapAlignment.center,
                     children: [

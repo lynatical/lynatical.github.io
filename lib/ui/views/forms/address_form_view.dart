@@ -49,10 +49,10 @@ class _AddressFormViewState extends State<AddressFormView> {
                           return Column(
                             children: [
                               //Street
-                              Row(
+                              Wrap(
                                 children: [
-                                  Flexible(
-                                    flex: 1,
+                                  FractionallySizedBox(
+                                    widthFactor: mobile ? 1 : 0.48,
                                     child: TextFormField(
                                       key: const ObjectKey('street'),
                                       autofocus: true,
@@ -78,12 +78,13 @@ class _AddressFormViewState extends State<AddressFormView> {
                                   ),
 
                                   const SizedBox(
-                                    width: 10,
+                                    width: 15,
+                                    height: 15,
                                   ),
 
                                   //Zipcode
-                                  Flexible(
-                                    flex: 1,
+                                  FractionallySizedBox(
+                                    widthFactor: mobile ? 1 : 0.48,
                                     child: TextFormField(
                                       key: const ObjectKey('zipcode'),
                                       controller: controller.zipcodeController,
@@ -106,13 +107,14 @@ class _AddressFormViewState extends State<AddressFormView> {
                               ),
 
                               const SizedBox(
-                                height: 20,
+                                height: 15,
                               ),
 
-                              Row(
+                              Wrap(
                                 children: [
                                   //City
-                                  Flexible(
+                                  FractionallySizedBox(
+                                    widthFactor: mobile ? 1 : 0.48,
                                     child: TextFormField(
                                       key: const ObjectKey('city'),
                                       readOnly: true,
@@ -129,11 +131,13 @@ class _AddressFormViewState extends State<AddressFormView> {
                                   ),
 
                                   const SizedBox(
-                                    width: 10,
+                                    width: 15,
+                                    height: 15,
                                   ),
 
                                   //State
-                                  Flexible(
+                                  FractionallySizedBox(
+                                    widthFactor: mobile ? 1 : 0.48,
                                     child: TextFormField(
                                       key: const ObjectKey('state'),
                                       readOnly: true,
@@ -205,7 +209,6 @@ class _AddressFormViewState extends State<AddressFormView> {
 
                                 //Aquí se guarda la cobertura actual
                                 // ignore: avoid_print
-                                print(controller.coverageType);
 
                                 var leadInfo = CustomerInfo(
                                     street: controller.street,
@@ -213,6 +216,7 @@ class _AddressFormViewState extends State<AddressFormView> {
                                     state: controller.state,
                                     zipcode: controller.zipcode,
                                     coverageType: controller.coverageType,
+                                    locationGroup: controller.locationgroup,
                                     locationPosition: location.position);
 
                                 customerInfo.setLeadInfo(leadInfo);
