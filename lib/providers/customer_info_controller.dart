@@ -139,8 +139,37 @@ class CustomerInfoProvider with ChangeNotifier {
         body: jsonEncode(body),
       );
     } catch (e) {
-      // ignore: avoid_print
       print('ERROR - function createLead(): $e');
+    }
+  }
+
+  Future<void> createGiveawayLead() async {
+    Map<String, dynamic> customer = {
+      'firstName': firstName,
+      'lastName': lastName,
+      'emailAddress': custEmail,
+      'phone': phone,
+    };
+
+    Map<String, dynamic> body = {
+      'apiKey': apiKey,
+      'action': 'giveawayPut',
+      'event': '10March2023',
+      'customer': customer,
+    };
+
+    try {
+      var url = Uri.parse('$env/planbuilder/giveaway');
+
+      await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(body),
+      );
+
+      print(body);
+    } catch (e) {
+      print('ERROR - function createGiveawayLead(): $e');
     }
   }
 }

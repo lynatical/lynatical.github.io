@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_maps/google_maps.dart' hide Place;
 
-import 'package:rta_map_services/classes/customer_info.dart';
 import 'package:rta_map_services/data/constants.dart';
 import 'package:rta_map_services/models/coverage_validate.dart';
 import 'package:rta_map_services/models/domain/place.dart';

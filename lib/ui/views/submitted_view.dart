@@ -8,12 +8,9 @@ class SubmittedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Color primaryColor = Color(0xFF2e5899);
-    const Color labelColor = Color(0xFF8aa7d2);
 
     TextStyle textPrimary = GoogleFonts.plusJakartaSans(
         fontWeight: FontWeight.w700, color: primaryColor, fontSize: 18);
-
-    TextStyle textLabel = GoogleFonts.plusJakartaSans(color: labelColor);
 
     return Column(
       children: [

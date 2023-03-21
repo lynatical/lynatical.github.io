@@ -158,6 +158,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "confetti",
+      "rootUri": "file:///Users/carolinaroblero/.pub-cache/hosted/pub.dev/confetti-0.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "convert",
       "rootUri": "file:///Users/carolinaroblero/.pub-cache/hosted/pub.dev/convert-3.1.1",
       "packageUri": "lib/",
@@ -878,7 +884,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-03-16T12:56:37.677435Z",
+  "generated": "2023-03-21T11:40:50.449907Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }

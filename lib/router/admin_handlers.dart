@@ -1,22 +1,22 @@
 // ignore_for_file: avoid_print
 
 import 'package:fluro/fluro.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:rta_map_services/ui/layouts/auth/auth_layout.dart';
+import 'package:rta_map_services/ui/layouts/auth/main_layout.dart';
+import 'package:rta_map_services/ui/views/forms/giveaway_form_view.dart';
+import 'package:rta_map_services/ui/views/widgets/stepper_widget.dart';
+
+import '../ui/layouts/auth/get_winner_layout.dart';
 
 class AdminHandlers {
-  static Handler homePage = Handler(handlerFunc: (context, params) {
-    print('Entered homePage Handler');
-    // The root route is always pushed at the start of the app (even if the route
-    // is different). We have to avoid creating the same layout twice to preserve
-    // the state
-    if (Uri.base.toString().contains('/?')) {
-      //has query parameters (will be rebuilt anyway)
-      return Container();
-    } else {
-      //no query parameters
-      return const AuthLayout();
-    }
+  static Handler leadPage = Handler(handlerFunc: (context, params) {
+    return const MainLayout(form: StepperWidget());
+  });
+
+  static Handler giveawayPage = Handler(handlerFunc: (context, params) {
+    return const MainLayout(form: GiveawayFormView());
+  });
+
+  static Handler winnerPage = Handler(handlerFunc: (context, params) {
+    return const WinnerLayout();
   });
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
+import 'package:rta_map_services/providers/search_controller.dart';
 import 'package:rta_map_services/providers/stepper_controller.dart';
-import 'package:rta_map_services/ui/inputs/custom_inputs.dart';
+import 'package:rta_map_services/ui/views/widgets/lead_inputs.dart';
 import '../../../providers/customer_info_controller.dart';
 import '../../buttons/custom_filled_button.dart';
 import '../../buttons/custom_outlined_button.dart';
@@ -24,22 +23,12 @@ class _LeadFormViewState extends State<LeadFormView> {
     //Controllers
     final stepper = Provider.of<StepperController>(context);
     final customerInfo = Provider.of<CustomerInfoProvider>(context);
-
-    //Regular Expressions
-    final validCharacters = RegExp(r'^[a-zA-Z\- ]+$');
-    final phoneCharacters = RegExp(r'^[0-9\-() ]+$');
+    final searchController = Provider.of<SearchController>(context);
 
     const Color labelColor = Color.fromARGB(255, 105, 137, 185);
+    const Color secondaryColor = Color(0xFFd20030);
+
     TextStyle textLabel = GoogleFonts.plusJakartaSans(color: labelColor);
-
-    //Phone Field Formatter
-    var phoneFormat = MaskTextInputFormatter(
-      mask: '(###) ###-####',
-      filter: {'#': RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy,
-    );
-
-    bool mobile = MediaQuery.of(context).size.width > 1130 ? false : true;
 
     final List<Widget> serviceCheckboxes = [
       CustomCheckbox(
@@ -71,196 +60,21 @@ class _LeadFormViewState extends State<LeadFormView> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  !mobile
-                      ? Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                  RichText(
+                      text: TextSpan(
+                          text: "Your service coverage type is: ",
+                          style: textLabel,
                           children: [
-                            Expanded(
-                              child: TextFormField(
-                                /// VARIABLE STORAGE
-                                controller: customerInfo.parsedFName,
-                                onChanged: (value) {
-                                  customerInfo.setfName(value);
-                                },
-
-                                ///VALIDATION TRIGGER
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                autocorrect: false,
-                                obscureText: false,
-                                keyboardType: TextInputType.name,
-                                decoration: CustomInputs().formInputDecoration(
-                                    label: 'First Name',
-                                    icon: Icons.person_outlined),
-
-                                validator: (value) {
-                                  return validCharacters.hasMatch(value ?? '')
-                                      ? null
-                                      : 'Please enter a valid name.';
-                                },
-                                style: const TextStyle(
-                                  color: Color(0xFF2E5899),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: TextFormField(
-                                /// VARIABLE STORAGE
-                                controller: customerInfo.parsedLName,
-                                onChanged: (value) {
-                                  customerInfo.setlName(value);
-                                },
-
-                                ///VALIDATION TRIGGER
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                autocorrect: false,
-                                obscureText: false,
-                                keyboardType: TextInputType.name,
-                                decoration: CustomInputs().formInputDecoration(
-                                    label: 'Last Name',
-                                    icon: Icons.person_outlined),
-
-                                validator: (value) {
-                                  return validCharacters.hasMatch(value ?? '')
-                                      ? null
-                                      : 'Please enter a valid name.';
-                                },
-                                style: const TextStyle(
-                                  color: Color(0xFF2E5899),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : SizedBox(
-                          height: 130,
-                          child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: TextFormField(
-                                    /// VARIABLE STORAGE
-                                    controller: customerInfo.parsedFName,
-                                    onChanged: (value) {
-                                      customerInfo.setfName(value);
-                                    },
-
-                                    ///VALIDATION TRIGGER
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    autocorrect: false,
-                                    obscureText: false,
-                                    keyboardType: TextInputType.name,
-                                    decoration: CustomInputs()
-                                        .formInputDecoration(
-                                            label: 'First Name',
-                                            icon: Icons.person_outlined),
-
-                                    validator: (value) {
-                                      return validCharacters
-                                              .hasMatch(value ?? '')
-                                          ? null
-                                          : 'Please enter a valid name.';
-                                    },
-                                    style: const TextStyle(
-                                      color: Color(0xFF2E5899),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 15, height: mobile ? null : 15),
-                                Expanded(
-                                  child: TextFormField(
-                                    /// VARIABLE STORAGE
-                                    controller: customerInfo.parsedLName,
-                                    onChanged: (value) {
-                                      customerInfo.setlName(value);
-                                    },
-
-                                    ///VALIDATION TRIGGER
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    autocorrect: false,
-                                    obscureText: false,
-                                    keyboardType: TextInputType.name,
-                                    decoration: CustomInputs()
-                                        .formInputDecoration(
-                                            label: 'Last Name',
-                                            icon: Icons.person_outlined),
-
-                                    validator: (value) {
-                                      return validCharacters
-                                              .hasMatch(value ?? '')
-                                          ? null
-                                          : 'Please enter a valid name.';
-                                    },
-                                    style: const TextStyle(
-                                      color: Color(0xFF2E5899),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 15, height: mobile ? null : 15),
-                              ]),
-                        ),
-                  SizedBox(height: mobile ? null : 15),
-                  TextFormField(
-                    /// VARIABLE STORAGE
-                    controller: customerInfo.parsedPhone,
-                    onChanged: (value) => customerInfo.setPhone(value),
-
-                    ///VALIDATION TRIGGER
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    obscureText: false,
-                    keyboardType: TextInputType.phone,
-                    decoration: CustomInputs().formInputDecoration(
-                        label: 'Phone Number', icon: Icons.phone_outlined),
-
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(14),
-                      phoneFormat
-                    ],
-                    validator: (value) {
-                      return (phoneCharacters.hasMatch(value ?? '') &&
-                              value?.length == 14)
-                          ? null
-                          : 'Please enter a valid phone number.';
-                    },
-                    style: const TextStyle(
-                      color: Color(0xFF2E5899),
-                    ),
+                        TextSpan(
+                            text: searchController.coverageType,
+                            style: textLabel.copyWith(
+                                color: secondaryColor,
+                                fontWeight: FontWeight.bold))
+                      ])),
+                  const SizedBox(
+                    height: 15,
                   ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    /// VARIABLE STORAGE
-                    controller: customerInfo.parsedEmail,
-                    onChanged: (value) {
-                      customerInfo.setEmail(value);
-                    },
-
-                    ///VALIDATION TRIGGER
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    obscureText: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: CustomInputs().formInputDecoration(
-                        label: 'E-mail Address', icon: Icons.mail_outlined),
-
-                    validator: (value) {
-                      String pattern =
-                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                      RegExp regExp = RegExp(pattern);
-                      return regExp.hasMatch(value ?? '')
-                          ? null
-                          : 'Please enter a valid e-mail address.';
-                    },
-                    style: const TextStyle(
-                      color: Color(0xFF2E5899),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  const LeadInputs(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
@@ -280,9 +94,6 @@ class _LeadFormViewState extends State<LeadFormView> {
                       CustomOutlinedButton(
                         onPressed: () async {
                           stepper.stepBack();
-
-                          // ignore: use_build_context_synchronously
-                          //FocusScope.of(context).requestFocus(FocusNode());
                         },
                         text: 'Back',
                       ),
@@ -293,8 +104,6 @@ class _LeadFormViewState extends State<LeadFormView> {
                             customerInfo.createLead();
                             customerInfo.orderStatus(true);
                           }
-                          // ignore: use_build_context_synchronously
-                          //FocusScope.of(context).requestFocus(FocusNode());
                         },
                         text: 'Submit',
                       ),

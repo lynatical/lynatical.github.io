@@ -38,6 +38,7 @@ dependencies:
   checkbox_formfield: ^0.2.0
   circular_menu: ^2.0.1
   clay_containers: ^0.3.2
+  confetti: ^0.7.0
   cupertino_icons: ^1.0.2
   date_format: ^2.0.4
   datetime_picker_formfield: ^2.0.0
